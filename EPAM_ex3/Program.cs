@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace EPAM_ex3
 {
@@ -9,12 +8,30 @@ namespace EPAM_ex3
         {
             String str = Console.ReadLine();
             var words = str.Split(" " , StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (var word in words.Where(w => words.Count(v => v == w) == 1))
+            int i = 0;
+            foreach (string word in words)
             {
-                Console.Write(word + " ");
+                foreach (string temp in words)
+                {
+                    if (word == temp)
+                    {
+                        i++;
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+                if (i == 1)
+                {
+                    Console.Write(word + " ");
+                    i = 0;
+                }
+                else
+                {
+                    i = 0;
+                }
             }
-
             Console.ReadLine();
         }
     }
